@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta   name="color-scheme" content="Light dark">
+    <title>Mundo Ropa</title>
+    <link rel="stylesheet" href=css/estilos.css>
+    <script src="JS/menu.js" defer></script>
+    <script src="JS/main.js" defer></script>
+</head>
+
+
+<body>
+    <header>
+        <div  class="contenedor-header">
+ <h1 class="mr-logo"><a href=index.html>Mundo Ropa</a></h1>
+ 
+ 
+
+
+     <div class="controles">
+                
+                
+                <button id="lista-favoritos" class="fav-btn" aria-label="Ingresar a favoritos" aria-controls="primary-fav" aria-expanded="false">
+                    <span class="sr-only">favoritos</span>
+                    <span id="fav-count" class="fav-count">0</span>
+                </button>
+
+                <button id="carrito" class="cart-btn" aria-label="Ingresar a carrito" aria-controls="primary-cart" aria-expanded="false">
+                    <span class="sr-only">Carrito de compras</span>
+                    <span class="cart-count">0</span>
+                </button>
+
+                <button id="menu-principal" class="menu-btn" aria-label="Ingresar al menu principal" aria-controls="primary-navigation" aria-expanded="false"><span class="sr-only">Menu principal</span></button>
+            </div>
+        </div>
+
+  
+    </header>
+
+
+
+
+    <main> 
+        <section class="bienvenida">
+        <div class="contenedor-bienvenida">
+            <h2>Bienvenidos a Htech</h2>
+            <p>La mejor tienda de periféricos de alta performance.</p>
+        </div>                
+    </section>
+
+    <section id="productos" class="seleccion-catalogo">
+        <h1>Productos</h1>
+        <div class="contenedor-productos">
+            <article class="card-producto" >
+                <div class="pagina"></div>
+                <img src="images/modelo" alt="ropa1">
+                <h3>Mundo Ropa</h3>
+                <h2>campera</h2>
+                <p class="precio">$100</p>
+
+                <button class="btn btn-addFavorito"><span>favorito</span></button>
+
+                <button class="btn btn-addCarrito"><span>Carrito</span></button>
+
+                <a href="producto.html">Ver Detalle del Producto.</a>
+            </article>
+            </div>   
+    </section>
+
+
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="contenedor-footer">
+            <h1>Mundo Ropa</h1>
+
+            <ul>
+                 <li><a href="./index.html" rel="noopener noreferrer">Inicio</a></li>
+            <li><a href="#productos" rel="noopener noreferrer">Productos</a></li>
+            <li><a href="./quienes.html" rel="noopener noreferrer">quienes somos</a></li>
+              <a class="contacto" href="https://wa.me/5491138081715" rel="noopener noreferrer" target="_blank">
+    <span class="sr-only">Contactanos a travez de WhatsApp</span>
+</a>
+            </ul>
+
+
+            <p>Mundo Ropa | ISTEA 2026</p>
+        </div>
+
+    </footer>
+
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap');
+
+html{
+   --bg-color-200: hsl(45, 25%, 96%); 
+  --bg-color-200-75: hsla(45, 25%, 96%, 0.75);
+  --bg-color-200-95: hsla(45, 25%, 96%, 0.95);
+  --bg-color-400: hsl(45, 20%, 90%);
+  --text-color: hsl(222, 100%, 15%);
+  --accent-color-200: hsl(222, 100%, 50%); 
+  --accent-color-400: hsl(222, 100%, 36%); 
+  --accent-color-500: hsl(222, 100%, 25%);
+
+
+
+ --txt-heading: ;
+  --txt-base: "Google Sans Flex";
+
+}
+
+/* --------------Reseteo Global--------------------- */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*--------------------------------- header-----------------------------  */
+
+header{
+    font-family: var(--txt-base);
+}
+
+.mp-logo{
+    color: inherit;
+    text-decoration: none;
+}
+
+.contenedor-header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    position: fixed;
+
+    background-color: var(--bg-color-200);
+    backdrop-filter: blur(15px);
+    border: 0.1rem solid var(--accent-color-400);
+    border-radius: 3rem;
+    box-shadow: 0 5px 10px var(--bg-color-200-75);
+}
