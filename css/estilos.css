@@ -5,7 +5,7 @@ html{
   --bg-color-200-75: hsla(45, 25%, 96%, 0.75);
   --bg-color-200-95: hsla(45, 25%, 96%, 0.95);
   --bg-color-400: hsl(45, 20%, 90%);
-  --text-color: hsl(222, 100%, 15%);
+  --text-color: hsl(0, 0%, 0%);
   --accent-color-200: hsl(222, 100%, 50%); 
   --accent-color-400: hsl(222, 100%, 36%); 
   --accent-color-500: hsl(222, 100%, 25%);
@@ -14,6 +14,7 @@ html{
 
  --txt-heading: ;
   --txt-base: "Google Sans Flex";
+  --contenedor-sz: min(75rem, 100% );
 
 }
 
@@ -25,6 +26,22 @@ html{
 }
 
 
+
+/* -------------------links--------------------------- */
+
+a:link,
+a:visited {
+  color: var(--accent-color-400);
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  color: var(--accent-color-500);
+}
+
+
+
 /*--------------------------------- header-----------------------------  */
 
 header{
@@ -34,7 +51,13 @@ header{
 .mp-logo{
     color: inherit;
     text-decoration: none;
+    color: var(--accent-color-400);
+    font-family: var(--txt-base);
+
+    left: 0;
 }
+
+
 
 .contenedor-header{
     width: 100%;
@@ -42,12 +65,121 @@ header{
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    top: 0;
 
     position: fixed;
 
     background-color: var(--bg-color-200);
-    backdrop-filter: blur(15px);
-    border: 0.1rem solid var(--accent-color-400);
-    border-radius: 3rem;
-    box-shadow: 0 5px 10px var(--bg-color-200-75);
+    backdrop-filter: blur(15px); 
+}
+
+/* Estilos globales */
+body{
+  
+background-color: var(--bg-200);
+color: var(--text-color);
+font-family: var(--txt-base);
+line-height: 1.5;
+padding-top: 5rem;
+}
+
+h1,
+h2,
+h3{
+    font-family: var(--txt-heading);
+    cursor:default;
+    color: var(--accent-color-400);
+}
+
+
+.sr-only{
+position: absolute;
+top: -1000px;
+left: -1000px;
+display: block;
+width: 1px;
+height: 1px;
+overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* producto */
+
+.seleccion-producto{
+    padding-top: 1rem;
+    
+    height: 100%;
+}
+
+.detalle-producto{
+
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    gap: 1rem;
+    padding: 1rem;
+
+    color: var(--text-color);
+
+    background-color: var(--bg-color-200-95);
+
+    
+}
+.producto-acciones{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+
+    margin-top:auto;
+}
+.producto-acciones button{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+     padding: 0.5rem;
+
+     flex: 1;
+  
+
+    
+    border: none;    
+    font-family: var(--txt-base);
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--accent-color-400);
+    color: var(--bg-color-200);
+    cursor: pointer;
+
+
+}
+.producto-acciones :hover{
+    
+    
+    padding: 0.5rem;
+    background-color: var(--accent-color-500);
+    align-items: center;
+    transition: background-color 0.3s ease;
+    
 }
