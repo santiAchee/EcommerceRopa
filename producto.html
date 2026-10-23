@@ -46,11 +46,36 @@
 
     <section  class="seleccion-producto">
         <div class="detalle-producto">
-            <img src="images/cazadora_piel.jpg" alt="ropa 1">
+
+            <!-- columna izquierda: imagenes del producto -->
+            <div class="galeria-producto">
+                <img src="images/cazadora_piel.jpg" alt="ropa 1">
+                <img src="images/cazadora_piel.jpg" alt="ropa 1">
+                <img src="images/cazadora_piel.jpg" alt="ropa 1">
+                <img src="images/cazadora_piel.jpg" alt="ropa 1">
+            </div>
+
+               <!-- columna derecha: detalles del producto -->
             <div class="producto-detalles">
                 <h2>Cazadora de piel</h2>
                 <p>Precio: $ 15.000</p>
+
+
+                <!-- Selector de talles -->
+                 <div class="selector-talle">
+                <label for="talle">Seleccionar talle:</label>
+                <select name="talle" id="talle">
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                </select>
+                </div>
+               <!-- Descripcion -->
                 <p>Descripcion: Cazadora de piel de alta calidad, ideal para cualquier ocasion.</p>
+
+                <!-- Botones de agregar al carrito y a favoritos -->
                 <div class="producto-acciones">
                     <button class="agregar-carrito">Agregar al carrito</button>
                     <button class="agregar-fav">Agregar a favoritos</button>
