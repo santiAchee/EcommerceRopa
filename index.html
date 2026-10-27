@@ -26,32 +26,39 @@
 
      </div>
 
-    <header>
+   <header>
         <div  class="contenedor-header">
- <h1 class="mr-logo"><a href=index.html>Mundo Ropa</a></h1>
- 
- 
+
+            <!-- Logo : izquierda -->
+         <a href="#" class="mr-logo">
+            <h2>Mundo Ropa</h2>
+         </a>
+
+<!--Controles: derecha-->
+
+<div class="header-acciones-der">
+    <!--buscador-->
+    <div class="buscador" id="buscador-contenedor">
+      <input type="text" class="buscador-input" id="buscador-input" placeholder="¿Qué estás buscando?">
+      <button class="buscador-btn bg-icono" id="buscador-btn" aria-label="Buscar">
+        
+      </button>
+
+    </div>
+
+    <!--Favoritos-->
+    <button class="favoritos bg-icono" aria-label="Favoritos">
+        <span class="sr-only">Favoritos</span>
+    </button>
+    <!--Carrito de compras-->
+    <button class="carrito-comprar bg-icono" aria-label="Carrito">
+        <span class="sr-only">Carrito de compras</span>
+    </button>
 
 
-     <div class="controles">
-                
-                
-                <button id="lista-favoritos" class="fav-btn" aria-label="Ingresar a favoritos" aria-controls="primary-fav" aria-expanded="false">
-                    <span class="sr-only">favoritos</span>
-                    <span id="fav-count" class="fav-count">0</span>
-                </button>
-
-                <button id="carrito" class="cart-btn" aria-label="Ingresar a carrito" aria-controls="primary-cart" aria-expanded="false">
-                    <span class="sr-only">Carrito de compras</span>
-                    <span class="cart-count">0</span>
-                </button>
-
-                <button id="menu-principal" class="menu-btn" aria-label="Ingresar al menu principal" aria-controls="primary-navigation" aria-expanded="false"><span class="sr-only">Menu principal</span></button>
-            </div>
-        </div>
-
-  
+</div>
     </header>
+
 
 
 

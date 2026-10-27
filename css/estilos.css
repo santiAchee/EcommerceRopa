@@ -23,10 +23,7 @@ html{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-main{
-    background-color: var(--bg-color-200);
+    
 }
 
 
@@ -52,7 +49,7 @@ header{
     font-family: var(--txt-base);
 }
 
-.mp-logo{
+.mr-logo{
     color: inherit;
     text-decoration: none;
     color: var(--accent-color-400);
@@ -65,18 +62,32 @@ header{
 
 .contenedor-header{
     width: 100%;
+    max-width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1rem 2rem;
     top: 0;
+    left: 0;
+    z-index: 1000;
 
     position: fixed;
 
-    background-color: var(--bg-color-200);
+    background-color: var(--bg-color-200-95);
     backdrop-filter: blur(15px); 
+
+    border: 0.1rem solid var(--accent-color-400);
+    border-radius: 0.5rem;
+    border-bottom: 0.1rem solid var(--accent-color-400);
 }
 
+
+.header-acciones-der{
+display: flex;
+align-items: center;
+gap: 1rem;
+}
 /* Estilos globales */
 body{
   
@@ -104,6 +115,82 @@ display: block;
 width: 1px;
 height: 1px;
 overflow: hidden;
+}
+
+
+/* Estilos para los botones */
+.bg-icono{
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+/* Barra de busqueda */
+.bg-icono:hover{
+    opacity: 1;
+}
+.buscador-btn{
+    background-image: url('../images/ICONS/Search-1.svg');
+}
+
+/* Favoritos y carrito */
+.favoritos{
+    background-image: url('../images/ICONS/Heart-1.svg');
+}
+.favoritos:active{
+    background-image: url('../images/ICONS/Shopping\.svg');
+}
+.carrito-comprar{
+    background-image: url('../images/ICONS/Shopping\ Card.svg');
+}
+.carrito-comprar:active{
+    background-image: url('../images/ICONS/Shopping\ Card-1.svg');
+}
+
+
+/* buscador */
+
+.buscador{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 0.1rem solid transparent;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    height: 2.5rem;
+    padding-right: 0.5rem;
+}
+
+.buscador.activo{
+    background-color: var(--bg-200);
+    border-color: var(--accent-color-400);
+}
+
+.buscador-input{
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    font-family: var(--txt-base);
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.buscador.activo .buscador-input{
+    width: 15rem;
+    opacity: 1;
+    padding: 0.5rem;
 }
 
 
