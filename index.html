@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta   name="color-scheme" content="Light dark">
-    <title>Mundo Ropa</title>
+    <title>Mundo Ropa</title> 
+    <meta name="description" content="Mundo Ropa:tienda online de ropa.2x1 en toda la web, 10%OFF por transferencia y envios a todo el país">
     <link rel="stylesheet" href=css/estilos.css>
     <script src="js/menu.js" defer></script>
     <script src="js/main.js" defer></script>
@@ -12,6 +13,7 @@
 
 
 <body>
+    <a href="#contenido-principal" class="skip-link">Saltar contenido</a>
     <!-- barra de promos -->
      <div class="top-bar">
 
@@ -24,7 +26,7 @@
             <p>Comunicate por Whatsapp al <a href="https://wa.me/5491173602547">11 7360-2547</a></p>
         </div>
 
-     </div>
+    </div>
 
    <header>
         <div  class="contenedor-header">
@@ -33,6 +35,21 @@
          <a href="#" class="mr-logo">
             <h2>Mundo Ropa</h2>
          </a>
+         
+    <!--boton hamburguesa  -->
+         <button type="button" class="menu-bg-icono" id="menu-bg" aria-label="Abrir menú" aria-expanded="menu-principal">
+            <span class="sr-only">Menú</span>
+         </button>
+    <!-- navegación principal -->
+     <nav class="menu-principal" id="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-lista">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./producto.html">Productos</a></li>
+            <li><a href="#categoria">Categorías</a></li>
+            <li><a href="#colecciones">Colecciones</a></li>
+            <li><a href="#quienes">Quiénes somos</a></li>
+        </ul>
+     </nav>
 
 <!--Controles: derecha-->
 
@@ -76,6 +93,69 @@
 
         </section>
 
+        <!-- para el enlace "Saltar al contenido" -->
+         <div id="contenido-principal" tabindex="-1"></div>
+
+    <!-- franja beneficios -->
+     <section class="beneficios" aria-label="Beneficios de comprar en Mundo Ropa">
+        <ul class="beneficios-lista">
+            <li class="beneficio">
+                <span class="beneficio-icono-bg" aria-hidden="true"></span>
+                <div>
+                    <h3>Enviamos tu compra</h3>
+                    <p>Entregas a todo el país</p>
+                </div>
+            </li>
+
+            <li class="beneficio">
+                <span class="beneficio-icono-bg" aria-hidden="true"></span>
+                <div>
+                    <h3>Pagá como quieras</h3>
+                    <p>Tarjetas,trasnferencia o efectivo</p>
+                </div>
+            </li>
+
+            <li class="beneficio">
+                <span class="beneficio-icono-bg" aria-hidden="true"></span>
+                <div>
+                    <h3>Comprá con seguridad</h3>
+                    <p>Tus datos siempre protegidos</p>
+                </div>
+            </li>
+        </ul>
+     </section>
+
+     <section id="categoria" class="categorias-destacadas" aria-labelledby="titulo-categorias">
+        <h2 id="titulo-categorias" class="titulo-seccion">Descubri tus favoritos</h2>
+        <div class="contenedor-categorias">
+            <a href="#productos" class="card-categoria">
+                 <img src="images/categoria-camperas.jpg" alt="Camperas" loading="lazy" width="400" height="500">
+
+                 <div class="card-categoria-texto">
+                    <h3>Camperas</h3>
+                    <span>Ver todo</span>
+                 </div>
+            </a>
+
+            <a href="#productos" class="card-categoria">
+                  <img src="images/categoria-remeras.jpg" alt="Remeras" loading="lazy" width="400" height="500">
+
+                <div class="card-categoria-texto">
+                    <h3>Remeras</h3>
+                    <span>Ver todo</span>
+                </div>
+            </a>
+
+             <a href="#productos" class="card-categoria">
+                <img src="images/categoria-pantalones.jpg" alt="Pantalones" loading="lazy" width="400" height="500">
+                <div class="card-categoria-texto">
+                    <h3>Pantalones</h3>
+                    <span>Ver todo</span>
+                </div>
+            </a>
+        </div>
+     </section>
+
     <section id="productos" class="seleccion-catalogo">
         <h1>Productos</h1>
         <div class="contenedor-productos">
@@ -84,7 +164,39 @@
     </section>
 
 
+    <section id="colecciones" class="colecciones-destacadas" aria-labelledby="titulo-colecciones">
+        <h2 id="titulo-colecciones" class="titulo-seccion">Colecciones</h2>
+        <div class="contenedor-colecciones">
+            <article class="card-coleccion">
+                 <img src="images/coleccion-otono.jpg" alt="Colección otoño" loading="lazy" width="600" height="400">
 
+                 <div class="card-coleccion-teXto">
+                    <h3>Colección Otoño</h3>
+                    <p>Abrigos y capas livianas para la media estación.</p>
+                    <a href="#productos" class="btn-coleccion">Ver colección</a>
+                 </div>
+            </article>
+
+            <article class="card-coleccion">
+                <img src="images/coleccion-basicos.jpg" alt="Colección básicos" loading="lazy" width="600" height="400">
+
+                <div class="card-coleccion-texto">
+                    <h3>Básicos de todos los días</h3>
+                    <p>Prendas atemporales para combinar como quieras</p>
+                    <a href="#productos" class="btn-coleccion">Ver colección</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="quienes" class="quienes-breve" aria-labelledby="titulo-quienes">
+    <h2 id="titulo-quienes" class="titulo-seccion">Quiénes somos</h2>
+    <p>
+        Somos una tienda online de ropa pensada para que vestirte bien sea simple,
+        accesible y cómodo. Enviamos a todo el país y te atendemos por WhatsApp.
+    </p>
+    <a href="https://wa.me/5491173602547" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp</a>
+    </section>
 
     </main>
 
@@ -104,13 +216,44 @@
             <ul>
                  <li><a href="./index.html" rel="noopener noreferrer">Inicio</a></li>
             <li><a href="#productos" rel="noopener noreferrer">Productos</a></li>
-            <li><a href="./quienes.html" rel="noopener noreferrer">quienes somos</a></li>
+            <li><a href="#quienes" rel="noopener noreferrer">quienes somos</a></li>
               <a class="contacto" href="https://wa.me/5491138081715" rel="noopener noreferrer" target="_blank">
-    <span class="sr-only">Contactanos a travez de WhatsApp</span>
+    <span class="sr-only">Contactanos a traves de WhatsApp</span>
 </a>
             </ul>
 
+            <div class="footer-extra">
+                <nav class="footer-ayuda" aria-label="Ayuda">
+                    <h3>Ayuda</h3>
 
+                    <ul>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="#">Cambios y devoluciones</a></li>
+                        <li><a href="#">Medios de Pago</a></li>
+                        <li><a href="#">Formas de envio</a></li>
+                        <li><a href="#">Guía de talles</a></li>
+                    </ul>
+                </nav>
+
+                  <div class="footer-redes">
+                    <h3>Redes sociales</h3>
+                    <ul>
+                        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+                    </ul>
+                </div>
+ 
+                <form class="footer-newsletter" id="form-newsletter" action="#" method="post">
+                    <h3>Newsletter</h3>
+                    <p>Enterate primero de las ofertas y novedades.</p>
+                    <label for="newsletter-email" class="sr-only">Tu email</label>
+                    <input type="email" id="newsletter-email" name="email" placeholder="Tu email" autocomplete="email" required>
+                    <button type="submit" class="btn btn-newsletter">Suscribirme</button>
+                </form>
+            </div>
+
+            </div>
             <p>Mundo Ropa | ISTEA 2026</p>
         </div>
 
