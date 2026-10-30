@@ -11,7 +11,6 @@ async function cargarProductos() {
     const contenedor = document.querySelector('.contenedor-productos');
 
 try{
-    contenedor.innerHTML = '<p class="mensaje-estado">Cargando Catálogo...</p>'
 
     const respuesta = await fetch(url, {
         headers: {
