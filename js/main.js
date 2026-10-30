@@ -5,6 +5,8 @@ const BASE_ID = 'appZlkSjGvBFv37fA';
 const TABLA = 'Productos';
 
 
+let catalogoGlobal = [];
+
 //Busca los datos en la nube
 async function cargarProductos() {
     const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLA}`;
@@ -27,6 +29,8 @@ try{
         return;
     }
 
+    catalogoGlobal = productos;
+
 
     renderizarProductos(productos)
 
@@ -35,6 +39,9 @@ try{
 }
 
 }
+
+
+
 
 
 
@@ -47,23 +54,81 @@ function renderizarProductos(productos){
         const id = producto.id;
 
         const cardHTML = `
-         <article class="card-producto" data-id="${id}" >
+         <article class="card-producto" data-id="${id}" onclick="abrirModalProducto('${id}')" style="cursor: pointer">
                 <div class="pagina"></div>
                 <img src="${campos.Imagen}" alt="${campos.Nombre}">
                 <h3>Mundo Ropa</h3>
                 <h2>${campos.Nombre}</h2>
-                <p class="precio">${campos.Precio}</p>
+                <p class="precio">$${campos.Precio}</p>
 
-                <button class="btn btn-addFavorito"><span>favorito</span></button>
-
-                <button class="btn btn-addCarrito"><span>Carrito</span></button>
-
-                <a href="#" onclick="abrirModalProducto('${id}'); return false;">Ver Detalle del Producto.</a>
             </article>
         `;
         contenedor.innerHTML += cardHTML;
     });
 }
+
+//modal
+function abrirModalProducto(id) {
+    const producto = catalogoGlobal.find(item => item.id === id);
+    if (!producto) return;
+
+    const campos = producto.fields;
+
+
+    const modalHTML = `
+    <!--Modal del producto-->
+     <section id="modal-producto" class="modal-overlay" aria-label="Detalles del producto" onclick="cerrarFondo(event)">
+      <div class="modal-contenido">
+        <button class="btn-cerrar" onclick="cerrarModal()" aria-label="cerrar-modal"><span class="sr-only">Cerrar modal</span></button>
+        <div class="modal-body">
+            <img src="${campos.Imagen}" alt="${campos.Nombre}" class="modal-imagen">
+            <!-- informacion -->
+            <div class="modal-info">
+                <h2>${campos.Nombre}</h2>
+                <p>${campos.Descripcion}.</p>
+                <p class="precio">$${campos.Precio}</p>
+                 <!-- Selector de talles -->
+                 <div class="selector-talle">
+                <label for="talle">Seleccionar talle:</label>
+                <select name="talle" id="talle">
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                </select>
+                </div>
+
+
+                <!-- Botones de agregar al carrito y a favoritos -->
+                <div class="producto-acciones">
+                    <button class="agregar-carrito">Agregar al carrito</button>
+                    <button class="agregar-fav"><span class="sr-only">Agregar a favoritos</span></button>
+            </div>
+
+        </div>
+
+      </div>
+      </section>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+//cerrar modal
+function cerrarModal() {
+    const modal = document.getElementById('modal-producto');
+    if(modal) {
+        modal.remove();
+    }
+
+}
+
+function cerrarFondo(event){
+    if(event.target.id === 'modal-producto') {
+        cerrarModal();
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', () =>{
     cargarProductos();
