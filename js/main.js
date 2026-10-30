@@ -41,13 +41,77 @@ try{
 }
 
 
+//Buscador
+function inicializarBuscador(){
+    const contenedorBuscador = document.querySelector('.buscador');
+    const btnBuscar = document.querySelector('.buscador-btn');
+    const inputBusqueda = document.querySelector('.buscador-input');
 
+    if(!contenedorBuscador || !btnBuscar || !inputBusqueda) return;
+    btnBuscar.addEventListener('click', (e) =>{
+     e.preventDefault();
+     e.stopImmediatePropagation();
+
+     contenedorBuscador.classList.toggle('activo');
+
+     if(contenedorBuscador.classList.contains('activo')){
+        inputBusqueda.focus();
+     }else{
+        inputBusqueda.value = '';
+        renderizarProductos(catalogoGlobal);
+     }
+    });
+
+    // filtrar en tiempo real
+    inputBusqueda.addEventListener('input', (e) => {
+        const termino = e.target.value.toLowerCase().trim();
+
+        const resultados = catalogoGlobal.filter(producto => {
+
+            const campos = producto.fields;
+
+            const nombre = producto.fields.Nombre ? producto.fields.Nombre.toLowerCase() : '';
+            
+            const categorias = Array.isArray(campos.Categoria) ?
+            campos.Categoria.map(cat => cat.toLowerCase()) : [];
+
+            const coincidenciaNombre = nombre.includes(termino);
+            const coincidenciaCategoria = categorias.some(cat => cat.includes(termino));
+
+            return (coincidenciaNombre || coincidenciaCategoria);
+        });
+
+        const contenedor = document.querySelector('.contenedor-productos');
+        
+        if (resultados.length === 0){
+          
+        }else{
+            renderizarProductos(resultados);
+        }
+    });
+
+    //cerrar
+    document.addEventListener('click', (e) =>{ 
+        if(!contenedorBuscador.contains(e.target) && contenedorBuscador.classList.contains('activo'))  {
+            contenedorBuscador.classList.remove('activo');
+            inputBusqueda.value = '';
+            renderizarProductos(catalogoGlobal);
+        }      
+    });
+
+    inputBusqueda.addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+    });
+}
 
 
 
 //Cards
 function renderizarProductos(productos){
     const contenedor = document.querySelector('.contenedor-productos');
+
+
+contenedor.innerHTML = '';
 
     productos.forEach(producto => {
         const campos = producto.fields;
@@ -132,4 +196,5 @@ function cerrarFondo(event){
 
 document.addEventListener('DOMContentLoaded', () =>{
     cargarProductos();
+    inicializarBuscador();
 });
