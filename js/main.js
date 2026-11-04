@@ -1,3 +1,6 @@
+
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let catalogoGlobal = [];
 //credenciales
 
 const TOKEN_AIRTABLE = 'patOoFu7Bto4pDoHo.8c9bda4c8bb84444923d14382b3a7391d99c4e19a397f54e84f8a3f6f959c0a7';
@@ -5,7 +8,6 @@ const BASE_ID = 'appZlkSjGvBFv37fA';
 const TABLA = 'Productos';
 
 
-let catalogoGlobal = [];
 
 //Busca los datos en la nube
 async function cargarProductos() {
@@ -32,7 +34,9 @@ try{
     catalogoGlobal = productos;
 
 
-    renderizarProductos(productos)
+    renderizarProductos(productos);
+
+    renderizarCarrito();
 
 } catch (error){
     contenedor.innerHTML  = '<p class="mensaje-estado">Hubo un problema al cargar la tienda por favor intenta actualizar la pagina</p>';
@@ -117,6 +121,8 @@ contenedor.innerHTML = '';
         const campos = producto.fields;
         const id = producto.id;
 
+    
+
         const cardHTML = `
          <article class="card-producto" data-id="${id}" onclick="abrirModalProducto('${id}')" style="cursor: pointer">
                 <div class="pagina"></div>
@@ -137,6 +143,7 @@ function abrirModalProducto(id) {
     if (!producto) return;
 
     const campos = producto.fields;
+
 
 
     const modalHTML = `
@@ -166,7 +173,7 @@ function abrirModalProducto(id) {
 
                 <!-- Botones de agregar al carrito y a favoritos -->
                 <div class="producto-acciones">
-                    <button class="agregar-carrito">Agregar al carrito</button>
+                    <button class="agregar-carrito" onclick="agregarAlCarrito('${id}')">Agregar al carrito</button>
                     <button class="agregar-fav"><span class="sr-only">Agregar a favoritos</span></button>
             </div>
 
@@ -187,14 +194,121 @@ function cerrarModal() {
 
 }
 
+//Carrito----------------------------------------------------------------
+//Agregar al carrito
+function agregarAlCarrito(idProducto) {
+
+    const selectTalle = document.getElementById('talle');
+    const talleSeleccionado = selectTalle ? selectTalle.value : 'Único';
+    const existe = carrito.find(item => item.id === idProducto && item.talle === talleSeleccionado);
+
+    if(existe){
+        existe.cantidad += 1;
+    }else{
+        carrito.push({id: idProducto, cantidad: 1, talle: talleSeleccionado});
+    }
+
+    actualizarYGuardar();
+
+   
+
+};
+//renderizar el carrito
+function renderizarCarrito() {
+     const ListaCarrito = document.getElementById('carrito-body');
+     const cartCount = document.getElementById('cart-count');
+     const contenedorTotal = document.getElementById('carrito-precio-total');
+
+        
+    if (!ListaCarrito) return;
+
+    ListaCarrito.innerHTML = '';
+    let total = 0;
+
+
+
+    if (carrito.length === 0) {
+        ListaCarrito.innerHTML =`
+        <p>Tu carrito está vacío</p>
+        `
+        cartCount.textContent = 0;
+        cartCount.classList.remove('active');
+        return;
+    }
+    //Contador
+    if (cartCount) {
+    cartCount.classList.add('active');
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    cartCount.textContent = totalItems;
+    }
+
+    
+carrito.forEach((item, index) => {
+        const prod = catalogoGlobal.find(producto => producto.id === item.id);
+        if (!prod) return;
+
+        const campos = prod.fields;
+
+        const subtotal = campos.Precio * item.cantidad;
+        total += subtotal;
+
+        const li = document.createElement('li');
+
+        li.className = 'carrito-item';
+        li.innerHTML = `
+           <img src="${campos.Imagen}" alt="${campos.Nombre}" class="carrito-item-img">
+            
+            <div class="carrito-item-info">
+                <div class="carrito-item-titulo-precio">
+                    <h3>${campos.Nombre}</h3>
+                    <span class="carrito-item-precio">$${campos.Precio.toLocaleString('es-AR')}</span>
+                </div>
+                
+                <p style="margin: 0; font-size: 0.85rem;">Talle: <strong>${item.talle}</strong></p>
+                
+                <div class="carrito-item-controles">
+                    <div class="carrito-item-cantidad">
+                        <button class="btn-restar" onclick="restarCantidad(${index})">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="btn-sumar" onclick="sumarCantidad(${index})">+</button>
+                    </div>
+                    
+                    <button class="btn-eliminar-item" aria-label="Eliminar ${campos.Nombre}" onclick="eliminarItem(${index})">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        ListaCarrito.appendChild(li);
+    });
+    if (contenedorTotal) {
+    contenedorTotal.textContent = '$' + total.toLocaleString('es-AR');
+ }
+}
+
+
 function cerrarFondo(event){
     if(event.target.id === 'modal-producto') {
         cerrarModal();
     }
 }
 
+function actualizarYGuardar() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    renderizarCarrito();
+}
+
+document.addEventListener('click', (e) => {
+    if(e.target.id === 'vaciar-carrito'){
+        carrito = [];
+        actualizarYGuardar();
+    }
+});
+
 
 document.addEventListener('DOMContentLoaded', () =>{
     cargarProductos();
     inicializarBuscador();
+
 });

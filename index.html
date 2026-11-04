@@ -13,7 +13,7 @@
 
 
 <body>
-    <div class="fantasma" id="fantasma"></div>
+    <div class="fantasma close-all" id="fantasma" aria-hidden="true"></div>
     <a href="#contenido-principal" class="skip-link">Saltar contenido</a>
     <!-- barra de promos -->
      <div class="top-bar">
@@ -37,21 +37,7 @@
             <h2>Mundo Ropa</h2>
          </a>
          
-    <!--boton hamburguesa  -->
-         <button type="button" class="menu-bg-icono" id="menu-bg" aria-label="Abrir menú" aria-expanded="menu-principal">
-            <span class="sr-only">Menú</span>
-         </button>
-    <!-- navegación principal -->
-     <nav class="menu-principal" id="menu-principal" aria-label="Navegación principal">
-        <ul class="menu-lista">
-            <li><a href="./index.html">Inicio</a></li>
-            <li><a href="./producto.html">Productos</a></li>
-            <li><a href="#categoria">Categorías</a></li>
-            <li><a href="#colecciones">Colecciones</a></li>
-            <li><a href="#quienes">Quiénes somos</a></li>
-        </ul>
-     </nav>
-
+   
 <!--Controles: derecha-->
 
 <div class="header-acciones-der">
@@ -64,14 +50,46 @@
 
     </div>
 
-    <!--Favoritos-->
-    <button class="favoritos bg-icono" aria-label="Favoritos">
-        <span class="sr-only">Favoritos</span>
-    </button>
     <!--Carrito de compras-->
     <button class="carrito-comprar bg-icono" aria-label="Carrito">
         <span class="sr-only">Carrito de compras</span>
+        <span class="carrito-cantidad" id="cart-count">0</span>
     </button>
+
+<!-- carrito lateral -->
+<aside class="carrito-lateral" id="carrito-lateral" aria-hidden="true">
+    
+    <div class="carrito-header">
+        <h2>Tu Carrito de compras</h2>
+        <button class="btn-cerrar-carrito" id="cerrar-carrito" aria-label="Cerrar carrito">
+            <span class="sr-only">Cerrar carrito</span>
+        </button>
+    </div>
+
+    <!-- Contenedor de los productos -->
+    <div class="carrito-body" id="carrito-body">
+        
+        <!-- card -->
+        <div class="carrito-item">
+           
+        </div>
+        <!-- fin card -->
+
+    </div>
+
+    <!--footer-->
+    <div class="carrito-footer">
+        <div class="carrito-total">
+            <span>Total:</span>
+            <span id="carrito-precio-total">$0</span>
+        </div>
+        <!-- vaciar carrito -->
+        <button class="btn-vaciar-carrito" id="vaciar-carrito">Vaciar carrito</button>
+        <!-- checkout -->
+        <button class="btn-checkout" onclick="window.location.href='checkout.html'">Finalizar Compra</button>
+    </div>
+
+</aside>
 
 
 </div>

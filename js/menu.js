@@ -1,31 +1,45 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//     const btnBusqueda = document.getElementById('buscador-btn');
-//     const contenedorBusqueda = document.getElementById('buscador-contenedor');
-//     const inputBusqueda = document.getElementById('buscador-input');
+const primaryCart = document.querySelector('.carrito-lateral');
+const cartToggle = document.querySelector('.carrito-comprar');
+const closeCart = document.querySelector('.btn-cerrar-carrito');
+const CloseAll = document.querySelector('.close-all');
+
+///carrito
+if(cartToggle && primaryCart){
+cartToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+
+   primaryCart.classList.add('abierto');
+   primaryCart.setAttribute('aria-hidden', 'false');
+
+   if (CloseAll) {
+    CloseAll.classList.add('activo');
+   }
+    
 
 
-//     if(btnBusqueda && contenedorBusqueda){
-//         btnBusqueda.addEventListener('click', (e) =>{
-//             if(contenedorBusqueda.classList.contains('activo') && inputBusqueda.value.trim() !== ""){
-//                 console.log("Buscando: ", inputBusqueda.value);
-//                 return
-//             }
+    document.body.classList.add('no-scroll');//pausar el scroll de la pagina
+});
+};
 
-//             e.stopPropagation();
+//cerrar carrito
+function cerrarCarrito() {
+    if (primaryCart) {
+        primaryCart.classList.remove('abierto');
+        primaryCart.setAttribute('aria-hidden', 'true');
+}
+if (CloseAll) {
+    CloseAll.classList.remove('activo');
+}
+document.body.classList.remove('no-scroll');//volver a poner el scroll de la pagina
+}
+
+if (closeCart) {
+    closeCart.addEventListener('click', cerrarCarrito);
+}
+if (CloseAll) {
+    CloseAll.addEventListener('click', cerrarCarrito);
+}
 
 
-//             contenedorBusqueda.classList.toggle('activo');
 
-//             if (contenedorBusqueda.classList.contains('activo')){
-//                 inputBusqueda.focus();
-//             }
-//         });
 
-//         document.addEventListener('click', (e) =>{
-//             if(!contenedorBusqueda.contains(e.target)){
-//                 contenedorBusqueda.classList.remove('activo')
-//             }
-//         });
-//     }
-
-// });
