@@ -211,7 +211,6 @@ function agregarAlCarrito(idProducto) {
 
     actualizarYGuardar();
     cerrarModal();
-    
     alert('¡El producto se agregó al carrito!');
    
 
