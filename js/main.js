@@ -13,6 +13,7 @@ const TABLA = 'Productos';
 async function cargarProductos() {
     const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLA}`;
     const contenedor = document.querySelector('.contenedor-productos');
+    if (!contenedor) return;
 
 try{
 
@@ -209,7 +210,8 @@ function agregarAlCarrito(idProducto) {
     }
 
     actualizarYGuardar();
-
+    cerrarModal();
+    alert('¡El producto se agregó al carrito!');
    
 
 };
@@ -218,7 +220,8 @@ function renderizarCarrito() {
      const ListaCarrito = document.getElementById('carrito-body');
      const cartCount = document.getElementById('cart-count');
      const contenedorTotal = document.getElementById('carrito-precio-total');
-
+    const btnVaciar = document.getElementById('vaciar-carrito');
+    const btnCheckout = document.querySelector('.btn-checkout');
         
     if (!ListaCarrito) return;
 
@@ -233,8 +236,13 @@ function renderizarCarrito() {
         `
         cartCount.textContent = 0;
         cartCount.classList.remove('active');
+        if (contenedorTotal) contenedorTotal.textContent = '$0';
+        if (btnVaciar) btnVaciar.disabled = true;
+        if (btnCheckout) btnCheckout.disabled = true;
         return;
     }
+    if (btnVaciar) btnVaciar.disabled = false;
+    if (btnCheckout) btnCheckout.disabled = false;
     //Contador
     if (cartCount) {
     cartCount.classList.add('active');
@@ -261,14 +269,14 @@ carrito.forEach((item, index) => {
             <div class="carrito-item-info">
                 <div class="carrito-item-titulo-precio">
                     <h3>${campos.Nombre}</h3>
-                    <span class="carrito-item-precio">$${campos.Precio.toLocaleString('es-AR')}</span>
+                    <span class="carrito-item-precio">$${subtotal.toLocaleString('es-AR')}</span>
                 </div>
                 
                 <p style="margin: 0; font-size: 0.85rem;">Talle: <strong>${item.talle}</strong></p>
                 
                 <div class="carrito-item-controles">
                     <div class="carrito-item-cantidad">
-                        <button class="btn-restar" onclick="restarCantidad(${index})">-</button>
+                        <button class="btn-restar" onclick="restarCantidad(${index})" ${item.cantidad === 1 ? 'disabled' : ''}>-</button>
                         <span>${item.cantidad}</span>
                         <button class="btn-sumar" onclick="sumarCantidad(${index})">+</button>
                     </div>
@@ -306,9 +314,133 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// Sumo cantidad de un producto 
+function sumarCantidad(index) {
+    if (carrito[index]) {
+        carrito[index].cantidad += 1;
+        actualizarYGuardar();
+    }
+}
+
+// Resto cantidad de un producto 
+function restarCantidad(index) {
+    if (carrito[index] && carrito[index].cantidad > 1) {
+        carrito[index].cantidad -= 1;
+        actualizarYGuardar();
+    }
+}
+
+// Eliminar un producto
+function eliminarItem(index) {
+    carrito.splice(index, 1);
+    actualizarYGuardar();
+}
+
+// Filtrado
+function filtrarPorCategoria(categoria) {
+    if (categoria === 'todas') {
+        renderizarProductos(catalogoGlobal);
+        return;
+    }
+
+    const termino = categoria.toLowerCase();
+    const filtrados = catalogoGlobal.filter(producto => {
+        const campos = producto.fields;
+        const nombre = campos.Nombre ? campos.Nombre.toLowerCase() : '';
+        const categorias = Array.isArray(campos.Categoria)
+            ? campos.Categoria.map(cat => cat.toLowerCase())
+            : (campos.Categoria ? [String(campos.Categoria).toLowerCase()] : []);
+
+        return categorias.some(cat => cat.includes(termino)) || nombre.includes(termino);
+    });
+
+    renderizarProductos(filtrados);
+}
+
 
 document.addEventListener('DOMContentLoaded', () =>{
     cargarProductos();
     inicializarBuscador();
+    inicializarCheckout();
 
 });
+
+// ckeckout
+function inicializarCheckout() {
+    const form = document.getElementById('form-checkout');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        
+        const nombre = document.getElementById('nombre').value.trim();
+        const apellido = document.getElementById('apellido').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const telefono = document.getElementById('telefono').value.trim();
+        const direccion = document.getElementById('direccion').value.trim();
+        const ciudad = document.getElementById('ciudad').value.trim();
+        const cp = document.getElementById('codigo-postal').value.trim();
+
+       
+        document.querySelectorAll('.mensaje-error').forEach(el => el.textContent = '');
+
+        let esValido = true;
+        const soloNumeros = /^[0-9]+$/;
+        const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (nombre.length < 3) {
+            document.getElementById('error-nombre').textContent = 'Ingresá tu nombre (mínimo 3 letras).';
+            esValido = false;
+        }
+
+        if (apellido.length < 3) {
+            document.getElementById('error-apellido').textContent = 'Ingresá tu apellido (mínimo 3 letras).';
+            esValido = false;
+        }
+
+        if (!formatoEmail.test(email)) {
+            document.getElementById('error-email').textContent = 'Ingresá un formato de email válido (ej: usuario@correo.com).';
+            esValido = false;
+        }
+
+        if (!soloNumeros.test(telefono) || telefono.length < 8) {
+            document.getElementById('error-telefono').textContent = 'El teléfono debe contener solo números (mínimo 8 dígitos).';
+            esValido = false;
+        }
+
+        if (direccion.length < 5) {
+            document.getElementById('error-direccion').textContent = 'Ingresá una dirección válida (mínimo 5 caracteres).';
+            esValido = false;
+        }
+
+        if (ciudad.length < 3) {
+            document.getElementById('error-ciudad').textContent = 'Ingresá tu ciudad (mínimo 3 caracteres).';
+            esValido = false;
+        }
+
+        if (!soloNumeros.test(cp) || cp.length < 4) {
+            document.getElementById('error-cp').textContent = 'El código postal debe ser numérico (mínimo 4 dígitos).';
+            esValido = false;
+        }
+
+      
+        if (esValido) {
+            const contenedorDatos = document.getElementById('datos-confirmacion');
+            contenedorDatos.innerHTML = `
+                <p><strong>Nombre y Apellido:</strong> ${nombre} ${apellido}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Teléfono:</strong> ${telefono}</p>
+                <p><strong>Dirección:</strong> ${direccion}</p>
+                <p><strong>Ciudad:</strong> ${ciudad} (CP: ${cp})</p>
+            `;
+
+            const modalConfirmacion = document.getElementById('modal-confirmacion');
+            modalConfirmacion.hidden = false;
+
+            // limpio el carrito
+            carrito = [];
+            localStorage.removeItem('carrito');
+        }
+    });
+}
