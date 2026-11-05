@@ -51,6 +51,72 @@
     <main> 
 
     <section  class="seleccion-checkout">
+
+        <div class="checkout-contenedor">
+            <h1>Datos de envío a domicilio</h1>
+            <p class="checkout-subtitulo">Completá tus datos para finalizar la compra.</p>
+
+            <form id="form-checkout" class="form-checkout" novalidate>
+                <div class="campo-form">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan">
+                    <small class="mensaje-error" id="error-nombre"></small>
+                </div>
+
+                <div class="campo-form">
+                    <label for="apellido">Apellido *</label>
+                    <input type="text" id="apellido" name="apellido" placeholder="Ej: Pérez">
+                    <small class="mensaje-error" id="error-apellido"></small>
+                </div>
+
+                <div class="campo-form">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="ejemplo@correo.com">
+                    <small class="mensaje-error" id="error-email"></small>
+                </div>
+
+                <div class="campo-form">
+                    <label for="telefono">Teléfono (solo números) *</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: 1123456789">
+                    <small class="mensaje-error" id="error-telefono"></small>
+                </div>
+
+                <div class="campo-form">
+                    <label for="direccion">Dirección de entrega *</label>
+                    <input type="text" id="direccion" name="direccion" placeholder="Ej: Av. Siempre Viva 742">
+                    <small class="mensaje-error" id="error-direccion"></small>
+                </div>
+
+                <div class="campo-form">
+                    <label for="ciudad">Ciudad *</label>
+                    <input type="text" id="ciudad" name="ciudad" placeholder="Ej: Buenos Aires">
+                    <small class="mensaje-error" id="error-ciudad"></small>
+                </div>
+
+                <div class="campo-form">
+                    <label for="codigo-postal">Código Postal (solo números) *</label>
+                    <input type="text" id="codigo-postal" name="codigo-postal" placeholder="Ej: 1414">
+                    <small class="mensaje-error" id="error-cp"></small>
+                </div>
+
+                <div class="checkout-acciones">
+                    <a href="index.html" class="btn-volver-tienda">Volver a la tienda</a>
+                    <button type="submit" class="btn-enviar-checkout">Enviar</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div id="modal-confirmacion" class="modal-overlay" hidden>
+            <div class="modal-contenido modal-checkout-exito">
+                <h2>¡Compra realizada con éxito!</h2>
+                <p>Muchas gracias por tu compra. Prepararemos tu pedido con los siguientes datos de envío:</p>
+                <div id="datos-confirmacion" class="datos-confirmacion"></div>
+                <button type="button" class="btn-enviar-checkout" onclick="window.location.href='index.html'">
+                    Aceptar y volver al inicio
+                </button>
+            </div>
+        </div>
         
     </section>
 
