@@ -209,7 +209,6 @@ function agregarAlCarrito(idProducto) {
     }
 
     actualizarYGuardar();
-    cerrarModal();
 
    
 

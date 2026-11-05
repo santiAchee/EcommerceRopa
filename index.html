@@ -149,7 +149,7 @@
      <section id="categoria" class="categorias-destacadas" aria-labelledby="titulo-categorias">
         <h2 id="titulo-categorias" class="titulo-seccion">Descubri tus favoritos</h2>
         <div class="contenedor-categorias">
-            <a href="#productos" class="card-categoria">
+            <a href="#productos" class="card-categoria" onclick="filtrarPorCategoria('campera')">
                  <img src="images/categoria-camperas.jpg" alt="Camperas" loading="lazy" width="400" height="500">
 
                  <div class="card-categoria-texto">
@@ -157,7 +157,7 @@
                     <span>Ver todo</span>
                  </div>
             </a>      
-            <a href="#productos" class="card-categoria">
+            <a href="#productos" class="card-categoria" onclick="filtrarPorCategoria('remera')">
                   <img src="images/categoria-remeras.jpg" alt="Remeras" loading="lazy" width="400" height="500">
 
                 <div class="card-categoria-texto">
@@ -166,7 +166,7 @@
                 </div>
             </a>
 
-             <a href="#productos" class="card-categoria">
+             <a href="#productos" class="card-categoria" onclick="filtrarPorCategoria('pantalon')">
                 <img src="images/categoria-pantalones.jpg" alt="Pantalones" loading="lazy" width="400" height="500">
                 <div class="card-categoria-texto">
                     <h3>Pantalones</h3>
@@ -178,11 +178,18 @@
 
 
 <!--Productos-->
+   <!--Productos-->
     <section id="productos" class="seleccion-catalogo">
         <h1>Productos</h1>
+        <nav class="filtros-categorias" aria-label="Filtrar por categoría">
+            <button type="button" class="btn-filtro" onclick="filtrarPorCategoria('todas')">Todas</button>
+            <button type="button" class="btn-filtro" onclick="filtrarPorCategoria('campera')">Camperas</button>
+            <button type="button" class="btn-filtro" onclick="filtrarPorCategoria('remera')">Remeras</button>
+            <button type="button" class="btn-filtro" onclick="filtrarPorCategoria('pantalon')">Pantalones</button>
+        </nav>
         <div class="contenedor-productos">
            
-            </div>   
+        </div>   
     </section>
 
 
@@ -201,7 +208,7 @@
             <article class="card-coleccion">
                  <img src="images/coleccion-otono.jpg" alt="Colección otoño" loading="lazy" width="600" height="400">
 
-                 <div class="card-coleccion-teXto">
+                 <div class="card-coleccion-texto">
                     <h3>Colección Otoño</h3>
                     <p>Abrigos y capas livianas para la media estación.</p>
                     <a href="#productos" class="btn-coleccion">Ver colección</a>
