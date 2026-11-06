@@ -75,6 +75,7 @@ header{
     text-decoration: none;
     color: var(--accent-color-400);
     font-family: var(--txt-base);
+    white-space: nowrap;
 
     left: 0;
 }
@@ -85,7 +86,7 @@ header{
     width: 100%;
     max-width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
@@ -165,6 +166,8 @@ overflow: hidden;
 /*carrito */
 
 .carrito-comprar{
+    flex-shrink: 0;
+    position: relative;
     background-image: url('../images/ICONS/Shopping\ Card.svg');
     background-size: 2rem;
 }
@@ -355,6 +358,11 @@ overflow: hidden;
 .buscador.activo{
     background-color: var(--bg-color-200);
     border-color: var(--accent-color-400);
+    position: relative;
+    width: 180px;
+    right: 1rem;
+    transition: 1s;
+    
 }
 
 .buscador-input{
@@ -371,7 +379,9 @@ overflow: hidden;
 }
 
 .buscador.activo .buscador-input{
+   
     width: 15rem;
+    
     opacity: 1;
     padding: 0.5rem;
 }
@@ -741,6 +751,19 @@ overflow: hidden;
         flex-direction: column;
         justify-content: center;
     }
+
+    .contenedor-header{
+        flex-direction: row;
+    }
+
+    .header-acciones-der{
+        gap: 2rem;
+    }
+
+    .buscador.activo{
+        width: 250px;
+        right: auto;
+    }
 }
 
 
@@ -748,6 +771,7 @@ overflow: hidden;
     .modal-contenido {
         max-width: 1000px;
         padding: 3rem;
+        position: relative;
     }
 
     .modal-body{
