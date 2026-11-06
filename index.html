@@ -31,10 +31,27 @@
 
    <header>
         <div  class="contenedor-header">
+            <div class="contenedor-header">
+
+            <!-- Botón Hamburguesa -->
+            <button class="menu-bg-icono" id="btn-menu" aria-label="Abrir menú de navegación">
+                <span class="sr-only">Menú</span>
+            </button>
 
             <!-- Logo : izquierda -->
          <a href="#" class="mr-logo">
             <h2>Mundo Ropa</h2>
+
+            <nav class="menu-principal" id="menu-principal" aria-label="Navegación principal">
+                <ul class="menu-lista">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#categoria">Categorías</a></li>
+                    <li><a href="#colecciones">Colecciones</a></li>
+                    <li><a href="#quienes">Quiénes somos</a></li>
+                </ul>
+            </nav>
+
          </a>
          
    
@@ -146,28 +163,19 @@
 
 
      <!-- Categorias  -->
-     <section id="categoria" class="categorias-destacadas" aria-labelledby="titulo-categorias">
-        <h2 id="titulo-categorias" class="titulo-seccion">Descubri tus favoritos</h2>
+    <section id="categoria" class="categorias-destacadas"       aria-labelledby="titulo-categorias">
+        <h2 id="titulo-categorias" class="titulo-seccion">Descubrí tus favoritos</h2>
         <div class="contenedor-categorias">
             <a href="#productos" class="card-categoria" onclick="filtrarPorCategoria('campera')">
-                 <img src="images/categoria-camperas.jpg" alt="Camperas" loading="lazy" width="400" height="500">
-
+                 <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80" alt="Camperas" loading="lazy" width="400" height="500">
                  <div class="card-categoria-texto">
                     <h3>Camperas</h3>
                     <span>Ver todo</span>
                  </div>
             </a>      
-            <a href="#productos" class="card-categoria" onclick="filtrarPorCategoria('remera')">
-                  <img src="images/categoria-remeras.jpg" alt="Remeras" loading="lazy" width="400" height="500">
 
-                <div class="card-categoria-texto">
-                    <h3>Remeras</h3>
-                    <span>Ver todo</span>
-                </div>
-            </a>
-
-             <a href="#productos" class="card-categoria" onclick="filtrarPorCategoria('pantalon')">
-                <img src="images/categoria-pantalones.jpg" alt="Pantalones" loading="lazy" width="400" height="500">
+            <a href="#productos" class="card-categoria" onclick="filtrarPorCategoria('pantalon')">
+                <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=600&q=80" alt="Pantalones" loading="lazy" width="400" height="500">
                 <div class="card-categoria-texto">
                     <h3>Pantalones</h3>
                     <span>Ver todo</span>
@@ -176,15 +184,12 @@
         </div>
      </section>
 
-
-<!--Productos-->
    <!--Productos-->
     <section id="productos" class="seleccion-catalogo">
         <h1>Productos</h1>
         <nav class="filtros-categorias" aria-label="Filtrar por categoría">
             <button type="button" class="btn-filtro" onclick="filtrarPorCategoria('todas')">Todas</button>
             <button type="button" class="btn-filtro" onclick="filtrarPorCategoria('campera')">Camperas</button>
-            <button type="button" class="btn-filtro" onclick="filtrarPorCategoria('remera')">Remeras</button>
             <button type="button" class="btn-filtro" onclick="filtrarPorCategoria('pantalon')">Pantalones</button>
         </nav>
         <div class="contenedor-productos">
@@ -202,26 +207,27 @@
 
 
     <!--Colecciones-->
-      <section id="colecciones" class="colecciones-destacadas" aria-labelledby="titulo-colecciones">
+     <!--Colecciones-->
+    <section id="colecciones" class="colecciones-destacadas" aria-labelledby="titulo-colecciones">
         <h2 id="titulo-colecciones" class="titulo-seccion">Colecciones</h2>
         <div class="contenedor-colecciones">
             <article class="card-coleccion">
-                 <img src="images/coleccion-otono.jpg" alt="Colección otoño" loading="lazy" width="600" height="400">
+                 <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" alt="Colección otoño" loading="lazy" width="600" height="400">
 
                  <div class="card-coleccion-texto">
                     <h3>Colección Otoño</h3>
                     <p>Abrigos y capas livianas para la media estación.</p>
-                    <a href="#productos" class="btn-coleccion">Ver colección</a>
+                    <a href="#productos" class="btn-coleccion" onclick="filtrarPorCategoria('campera')">Ver colección</a>
                  </div>
             </article>
 
             <article class="card-coleccion">
-                <img src="images/coleccion-basicos.jpg" alt="Colección básicos" loading="lazy" width="600" height="400">
+                <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=80" alt="Colección básicos" loading="lazy" width="600" height="400">
 
                 <div class="card-coleccion-texto">
                     <h3>Básicos de todos los días</h3>
                     <p>Prendas atemporales para combinar como quieras</p>
-                    <a href="#productos" class="btn-coleccion">Ver colección</a>
+                    <a href="#productos" class="btn-coleccion" onclick="filtrarPorCategoria('todas')">Ver colección</a>
                 </div>
             </article>
         </div>
@@ -233,7 +239,8 @@
         Somos una tienda online de ropa pensada para que vestirte bien sea simple,
         accesible y cómodo. Enviamos a todo el país y te atendemos por WhatsApp.
     </p>
-    <a href="https://wa.me/5491173602547" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp</a>
+    <a href="https://wa.me/5491173602547" class="btn-whatsapp-icono" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
+    <span class="sr-only">Escribinos por WhatsApp</span></a>
     </section>
 
     </main>
@@ -254,8 +261,8 @@
             <ul>
                  <li><a href="./index.html" rel="noopener noreferrer">Inicio</a></li>
             <li><a href="#productos" rel="noopener noreferrer">Productos</a></li>
-            <li><a href="#quienes" rel="noopener noreferrer">quienes somos</a></li>
-              <a class="contacto" href="https://wa.me/5491138081715" rel="noopener noreferrer" target="_blank">
+            <li><a href="#quienes" rel="noopener noreferrer">Quienes somos</a></li>
+            
     <span class="sr-only">Contactanos a traves de WhatsApp</span>
 </a>
             </ul>

@@ -41,5 +41,28 @@ if (CloseAll) {
 }
 
 
+const btnMenu = document.getElementById('btn-menu');
+const menuPrincipal = document.getElementById('menu-principal');
+
+if (btnMenu && menuPrincipal) {
+    btnMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuPrincipal.classList.toggle('abierto');
+    });
+
+    
+    document.querySelectorAll('.menu-lista a').forEach(enlace => {
+        enlace.addEventListener('click', () => {
+            menuPrincipal.classList.remove('abierto');
+        });
+    });
+
+    
+    document.addEventListener('click', (e) => {
+        if (!menuPrincipal.contains(e.target) && !btnMenu.contains(e.target)) {
+            menuPrincipal.classList.remove('abierto');
+        }
+    });
+}
 
 
