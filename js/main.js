@@ -257,7 +257,9 @@ carrito.forEach((item, index) => {
 
         const campos = prod.fields;
 
-        const subtotal = campos.Precio * item.cantidad;
+        // Aplicación automática de la promo 2x1 del banner
+        const unidadesACobrar = Math.ceil(item.cantidad / 2);
+        const subtotal = campos.Precio * unidadesACobrar;
         total += subtotal;
 
         const li = document.createElement('li');
@@ -285,6 +287,7 @@ carrito.forEach((item, index) => {
                         Eliminar
                     </button>
                 </div>
+                <span class="carrito-item-precio">$${subtotal.toLocaleString('es-AR')} ${item.cantidad >= 2 ? '<small style="color: #25d366; font-size: 0.75rem;">(2x1 aplicado)</small>' : ''}</span>
             </div>
         `;
         
@@ -356,14 +359,6 @@ function filtrarPorCategoria(categoria) {
 
     renderizarProductos(filtrados);
 }
-
-
-document.addEventListener('DOMContentLoaded', () =>{
-    cargarProductos();
-    inicializarBuscador();
-    inicializarCheckout();
-
-});
 
 // ckeckout
 function inicializarCheckout() {
@@ -444,3 +439,60 @@ function inicializarCheckout() {
         }
     });
 }
+
+const formNewsletter = document.getElementById('form-newsletter');
+if (formNewsletter) {
+    formNewsletter.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailInput = document.getElementById('newsletter-email');
+        if (emailInput && emailInput.value.trim() !== '') {
+            alert(`¡Gracias por suscribirte con ${emailInput.value}! Pronto recibirás nuestras novedades.`);
+            formNewsletter.reset();
+        }
+    });
+}
+
+function inicializarNewsletter() {
+    const formNewsletter = document.getElementById('form-newsletter');
+    if (!formNewsletter) return;
+
+    formNewsletter.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value.trim();
+        if (email) {
+            alert(`¡Gracias por suscribirte con ${email}! Te enviaremos las mejores promociones.`);
+            formNewsletter.reset();
+        }
+    });
+}
+
+
+function inicializarEnlacesAyuda() {
+    const enlacesAyuda = document.querySelectorAll('.footer-ayuda a');
+    const infoTemas = {
+        'Preguntas frecuentes': 'Envíos a todo el país en 48-72hs. Pagos con tarjeta y transferencia con 10% OFF.',
+        'Cambios y devoluciones': 'Tenés 30 días corridos desde que recibís el paquete para solicitar cambios sin cargo.',
+        'Medios de Pago': 'Aceptamos tarjetas de débito/crédito, Mercado Pago y transferencia bancaria.',
+        'Formas de envio': 'Envíos a domicilio por Correo Argentino y puntos de retiro en sucursales.',
+        'Guía de talles': 'XS: 84-88cm | S: 88-92cm | M: 92-96cm | L: 96-102cm | XL: 102-110cm de contorno.'
+    };
+
+    enlacesAyuda.forEach(enlace => {
+        enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const texto = enlace.textContent.trim();
+            const mensaje = infoTemas[texto] || 'Esta sección estará disponible en breve.';
+            alert(`ℹ️ ${texto}:\n\n${mensaje}`);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () =>{
+    cargarProductos();
+    inicializarBuscador();
+    inicializarCheckout();
+    inicializarNewsletter();
+    inicializarEnlacesAyuda();
+});
+
